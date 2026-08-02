@@ -4,7 +4,6 @@ Automatic neutralization of safety alignment constraints in transformer-based la
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![unfuscated models on HuggingFace](https://img.shields.io/badge/models-4000%2B-blue.svg)](https://huggingface.co/models?other=heretic)
 
 ---
 
@@ -35,17 +34,22 @@ Unsupported: pure state-space models (Mamba, etc.), novel research architectures
 ## Installation
 
 ```sh
-pip install model-censorship-removal
+git clone https://github.com/albertguedes/model-censorship-removal.git
+cd model-censorship-removal
 ```
 
-Requires Python 3.10+, PyTorch 2.2+ (hardware-specific version required). MCR uses [uv](https://docs.astral.sh/uv/) for dependency management; run `uv run mcr` from a cloned repository to ensure pinned dependency versions.
+Requires Python 3.10+, PyTorch 2.2+ (hardware-specific version required). MCR uses [uv](https://docs.astral.sh/uv/) for dependency management.
+
+```sh
+uv sync
+```
 
 ---
 
 ## Quick Start
 
 ```sh
-mcr Qwen/Qwen3-4B-Instruct-2507
+uv run mcr Qwen/Qwen3-4B-Instruct-2507
 ```
 
 MCR will benchmark your hardware, load the model, compute residual directions from reference prompt sets, run the Optuna optimization study (200 trials by default), and present the Pareto-optimal results. You may then export the model, upload it to HuggingFace, run built-in benchmarks, or chat with the decensored variant.
@@ -53,7 +57,7 @@ MCR will benchmark your hardware, load the model, compute residual directions fr
 For quantized inference (VRAM-constrained environments):
 
 ```sh
-mcr <model> --quantization bnb_4bit
+uv run mcr <model> --quantization bnb_4bit
 ```
 
 ---
@@ -118,7 +122,7 @@ MCR implements a parametrized variant of directional ablation. For each supporte
 MCR includes interpretability features for studying model internals. Install with the `research` extra:
 
 ```sh
-pip install 'model-censorship-removal[research]'
+uv sync --extra research
 ```
 
 ### Residual vector visualization (`--plot-residuals`)
