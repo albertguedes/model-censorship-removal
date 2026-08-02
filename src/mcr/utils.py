@@ -32,7 +32,7 @@ from .config import DatasetSpecification, Settings
 from .system import (
     get_accelerator_info_dict,
     get_cpu_info_dict,
-    get_heretic_version_info,
+    get_mcr_version_info,
     get_python_env_info_dict,
     get_requirements_dict,
     is_xpu_available,
@@ -314,9 +314,11 @@ def get_readme_intro(
     else:
         reproducibility_instructions = ""
 
-    return f"""# This is a decensored version of {
+    return f"""# This is a policy-neutral version of {
         model_link
-    }, made using [Heretic](https://heretic-project.org) v{version("heretic-llm")}
+    }, produced using [Model Censorship Removal (MCR)](https://github.com/albertguedes/model-censorship-removal) v{
+        version("model-censorship-removal")
+    }
 {reproducibility_instructions}
 ## Abliteration parameters
 
@@ -450,7 +452,7 @@ def generate_reproduce_readme(
         system_report = ""
         system_instructions = ""
 
-    version_info = get_heretic_version_info()
+    version_info = get_mcr_version_info()
     origin_warning = ""
     if not version_info.is_standard_pypi:
         if version_info.origin and version_info.origin.startswith("Git"):
@@ -536,19 +538,19 @@ This directory contains the necessary information and assets to reproduce the re
 
 > [!TIP]
 > You can automate this process, including all verification steps, by downloading the `reproduce.json` file and running
-> `heretic --reproduce reproduce.json`.
+> `mcr --reproduce reproduce.json`.
 
-{system_instructions}1. Install the exact version of Heretic indicated in the **Environment** section above, from its original source.
+{system_instructions}1. Install the exact version of MCR indicated in the **Environment** section above, from its original source.
 1. Install the packages listed in `requirements.txt`: `pip install -r requirements.txt`
 1. Install the correct version of PyTorch: `{pytorch_install_command}`
 1. Place the provided `config.toml` in your working directory.
-1. Run Heretic without any additional arguments: `heretic`
+1. Run MCR without any additional arguments: `mcr`
 1. Wait for the run to finish, then select trial **{trial.user_attrs["index"]}** and export the model.
 1. Verify that the weight files have been exactly reproduced by comparing their SHA-256 hashes against those in `SHA256SUMS`:
    `sha256sum -c SHA256SUMS` (or look at the hashes online if you uploaded to Hugging Face)
 
 > [!TIP]
-> To use the included Optuna study journal `{checkpoint_filename}`, place it in the checkpoints directory (usually `checkpoints/`) before running Heretic.
+> To use the included Optuna study journal `{checkpoint_filename}`, place it in the checkpoints directory (usually `checkpoints/`) before running MCR.
 >
 > This allows you to export other models from the Pareto front, or to run additional trials without having to re-run the stored trials.
 """
@@ -563,7 +565,7 @@ def generate_reproduce_json(
 ) -> str:
     """Generates the contents of a reproduce.json file for the reproduce/ folder."""
 
-    version_info = get_heretic_version_info()
+    version_info = get_mcr_version_info()
 
     data = {
         # Version 3: plugin-based schema with generic scores/baseline scores.

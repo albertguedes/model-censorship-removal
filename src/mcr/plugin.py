@@ -13,10 +13,10 @@ from typing import Annotated, Any, TypeVar, Union, get_args, get_origin, get_typ
 from pydantic import BaseModel
 from torch import Tensor
 
-from heretic.utils import Prompt, load_prompts
+from mcr.utils import Prompt, load_prompts
 
 from .config import DatasetSpecification
-from .config import Settings as HereticSettings
+from .config import Settings as MCRSettings
 from .model import Model
 
 T = TypeVar("T")
@@ -51,7 +51,7 @@ def is_builtin_plugin(name: str) -> bool:
     plugins (file paths or third-party import paths) disable the reproducibility
     offer during upload.
     """
-    return name.startswith("heretic.scorers.")
+    return name.startswith("mcr.scorers.")
 
 
 def load_plugin(
@@ -105,7 +105,7 @@ def load_plugin(
         # We're writing directly to the sys.modules dict,
         # so the typical restrictions on module names
         # (no dots, slashes, etc.) don't apply.
-        module_name = f"heretic_plugin_{plugin_path}"
+        module_name = f"mcr_plugin_{plugin_path}"
 
         # Reuse already-loaded modules to avoid re-executing the plugin on repeated loads.
         module = sys.modules.get(module_name)
@@ -128,7 +128,7 @@ def load_plugin(
                 raise
 
         plugin_cls = validate_class(module, class_name)
-    # Fully-qualified import path, e.g "heretic.scorers.keyword_rate.KeywordRate".
+    # Fully-qualified import path, e.g "mcr.scorers.keyword_rate.KeywordRate".
     else:
         if "." not in name:
             raise ValueError(
@@ -157,7 +157,7 @@ class Context:
     Direct access to the underlying Model is intentionally not exposed.
     """
 
-    def __init__(self, settings: HereticSettings, model: Model) -> None:
+    def __init__(self, settings: MCRSettings, model: Model) -> None:
         self._model = model
         self._settings = settings
         self._responses_cache: dict[tuple[tuple[str, str], ...], list[str]] = {}
@@ -210,9 +210,7 @@ class Plugin:
         """
         return False
 
-    def __init__(
-        self, *, heretic_settings: HereticSettings, settings: BaseModel | None = None
-    ):
+    def __init__(self, *, mcr_settings: MCRSettings, settings: BaseModel | None = None):
         # Plugins that declare a settings schema should always receive
         # validated plugin settings from the evaluator.
         settings_model = self.__class__.get_settings_model()
@@ -227,7 +225,7 @@ class Plugin:
                     f"{settings_model.__name__}"
                 )
         self.settings = settings
-        self.heretic_settings = heretic_settings
+        self.mcr_settings = mcr_settings
 
     @classmethod
     def validate_contract(cls) -> None:

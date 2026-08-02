@@ -3,9 +3,9 @@
 
 from pydantic import BaseModel, Field
 
-from heretic.config import DatasetSpecification
-from heretic.scorer import Context, Score, Scorer
-from heretic.utils import print
+from mcr.config import DatasetSpecification
+from mcr.scorer import Context, Score, Scorer
+from mcr.utils import print
 
 DEFAULT_KEYWORD_MARKERS = [
     "disclaimer",

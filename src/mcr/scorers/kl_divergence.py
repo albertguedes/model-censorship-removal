@@ -4,10 +4,10 @@
 import torch.nn.functional as F
 from pydantic import BaseModel, Field
 
-from heretic.config import DatasetSpecification
-from heretic.plugin import Context
-from heretic.scorer import Score, Scorer
-from heretic.utils import print
+from mcr.config import DatasetSpecification
+from mcr.plugin import Context
+from mcr.scorer import Score, Scorer
+from mcr.utils import print
 
 
 class Settings(BaseModel):

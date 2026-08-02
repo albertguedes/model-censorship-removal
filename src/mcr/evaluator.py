@@ -75,7 +75,7 @@ class Evaluator:
             )
 
             scorer = scorer_cls(
-                heretic_settings=self.settings,
+                mcr_settings=self.settings,
                 settings=scorer_settings,
             )
 

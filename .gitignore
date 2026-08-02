@@ -12,6 +12,9 @@ wheels/
 # Caches
 /.ruff_cache/
 
+# Agent instructions
+AGENTS.md
+
 # Editors
 /.vscode/
 

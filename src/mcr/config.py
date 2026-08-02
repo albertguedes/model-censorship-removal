@@ -337,11 +337,11 @@ class Settings(BaseSettings):
     scorers: list[ScorerConfig] = Field(
         default_factory=lambda: [
             ScorerConfig(
-                plugin="heretic.scorers.keyword_rate.KeywordRate",
+                plugin="mcr.scorers.keyword_rate.KeywordRate",
                 optimization="minimize",
             ),
             ScorerConfig(
-                plugin="heretic.scorers.kl_divergence.KLDivergence",
+                plugin="mcr.scorers.kl_divergence.KLDivergence",
                 optimization="minimize",
             ),
         ],

@@ -151,8 +151,8 @@ def get_mps_driver_version() -> str | None:
 
 
 @dataclass
-class HereticVersionInfo:
-    """Detailed information about the heretic-llm installation."""
+class MCRVersionInfo:
+    """Detailed information about the model-censorship-removal installation."""
 
     version: str
     origin: str | None
@@ -160,10 +160,10 @@ class HereticVersionInfo:
     metadata: dict[str, Any]
 
 
-def get_heretic_version_info() -> HereticVersionInfo:
-    """Detects version and installation source (PyPI, Git, Local) of heretic-llm."""
+def get_mcr_version_info() -> MCRVersionInfo:
+    """Detects version and installation source (PyPI, Git, Local) of model-censorship-removal."""
 
-    package_name = "heretic-llm"
+    package_name = "model-censorship-removal"
     origin_metadata: dict[str, Any] = {"type": "unknown"}
     # This package must be installed for this code to run.
     distribution = importlib.metadata.distribution(package_name)
@@ -179,7 +179,7 @@ def get_heretic_version_info() -> HereticVersionInfo:
         # Standard PyPI installation.
         origin_metadata["type"] = "pypi"
 
-        return HereticVersionInfo(
+        return MCRVersionInfo(
             version=base_version,
             origin="PyPI",
             is_standard_pypi=True,
@@ -211,7 +211,7 @@ def get_heretic_version_info() -> HereticVersionInfo:
             }
         )
 
-        return HereticVersionInfo(
+        return MCRVersionInfo(
             version=base_version,
             origin=origin_str,
             is_standard_pypi=False,
@@ -222,14 +222,14 @@ def get_heretic_version_info() -> HereticVersionInfo:
     if "url" in data and data["url"].startswith("file://"):
         origin_metadata["type"] = "local"
 
-        return HereticVersionInfo(
+        return MCRVersionInfo(
             version=base_version,
             origin="Local",
             is_standard_pypi=False,
             metadata=origin_metadata,
         )
 
-    return HereticVersionInfo(
+    return MCRVersionInfo(
         version=base_version,
         origin=None,
         is_standard_pypi=False,
@@ -421,12 +421,17 @@ def get_package_version(name: str) -> str:
 
 
 def get_requirements_dict() -> dict[str, str]:
-    """Recursively finds all direct and transitive dependencies of heretic-llm and core libraries."""
+    """Recursively finds all direct and transitive dependencies of model-censorship-removal and core libraries."""
 
-    # We start with heretic-llm and the core compute libraries.
-    # PyTorch is not listed as a dependency in the heretic-llm package
+    # We start with model-censorship-removal and the core compute libraries.
+    # PyTorch is not listed as a dependency in the model-censorship-removal package
     # because installation is hardware-specific and must be done manually.
-    packages_to_check = ["heretic-llm", "torch", "torchaudio", "torchvision"]
+    packages_to_check = [
+        "model-censorship-removal",
+        "torch",
+        "torchaudio",
+        "torchvision",
+    ]
 
     visited = set()
     required_packages = set()
@@ -464,13 +469,13 @@ def get_requirements_dict() -> dict[str, str]:
 
     # Lookup versions for all discovered packages.
     dependencies = {}
-    version_info = get_heretic_version_info()
+    version_info = get_mcr_version_info()
 
     for package in required_packages_sorted:
-        # If heretic-llm was installed from source (Git/Local), exclude it
+        # If model-censorship-removal was installed from source (Git/Local), exclude it
         # from requirements.txt to prevent pip from downloading an unrelated
         # version from PyPI during reproduction.
-        if package == "heretic-llm" and not version_info.is_standard_pypi:
+        if package == "model-censorship-removal" and not version_info.is_standard_pypi:
             continue
 
         dependencies[package] = get_package_version(package)

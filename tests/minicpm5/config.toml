@@ -22,8 +22,8 @@ save_directory = "model"
 row_normalization = "none"
 
 scorers = [
-    { plugin = "heretic.scorers.keyword_rate.KeywordRate", optimization = "minimize" },
-    { plugin = "heretic.scorers.kl_divergence.KLDivergence", optimization = "minimize" },
+    { plugin = "mcr.scorers.keyword_rate.KeywordRate", optimization = "minimize" },
+    { plugin = "mcr.scorers.kl_divergence.KLDivergence", optimization = "minimize" },
 ]
 
 [good_prompts]

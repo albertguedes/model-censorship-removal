@@ -26,7 +26,7 @@ from rich.table import Table
 from .config import Settings
 from .system import (
     get_accelerator_info_dict,
-    get_heretic_version_info,
+    get_mcr_version_info,
     get_requirements_dict,
 )
 from .utils import ask_if_unset, print
@@ -150,7 +150,7 @@ class MismatchSeverity(IntEnum):
 
 def get_package_mismatch_severity(package_name: str) -> MismatchSeverity:
     if package_name in [
-        "heretic-llm",
+        "model-censorship-removal",
     ]:
         return MismatchSeverity.CRITICAL
     elif package_name in [
@@ -294,13 +294,13 @@ def check_environment(
         )
 
     requirements = get_requirements_dict()
-    requirements["heretic-llm"] = format_version_information(
-        asdict(get_heretic_version_info())
+    requirements["model-censorship-removal"] = format_version_information(
+        asdict(get_mcr_version_info())
     )
     requirements["torch"] = torch.__version__
 
     original_requirements = reproduction_information["environment"]["requirements"]
-    original_requirements["heretic-llm"] = format_version_information(
+    original_requirements["model-censorship-removal"] = format_version_information(
         reproduction_information["environment"]["heretic"]
     )
     original_requirements["torch"] = reproduction_information["environment"][

@@ -182,14 +182,10 @@ def run():
     ):
         os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
 
-    # Modified "Pagga" font from https://budavariam.github.io/asciiart-text/
-    print(f"[cyan]█░█░█▀▀░█▀▄░█▀▀░▀█▀░█░█▀▀[/]  v{version('heretic-llm')}")
     print(
-        "[cyan]█▀█░█▀▀░█▀▄░█▀▀░░█░░█░█░░[/]  [blue underline]https://heretic-project.org[/]"
+        f"[cyan]Model Censorship Removal (MCR)[/]  v{version('model-censorship-removal')}"
     )
-    print(
-        "[cyan]▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░░▀░▀▀▀[/]  [blue underline]https://github.com/p-e-w/heretic[/]"
-    )
+    print("[cyan]https://github.com/albertguedes/model-censorship-removal[/]")
     print()
 
     if (
@@ -227,7 +223,7 @@ def run():
 
         print()
         print(
-            "Run [bold]heretic --help[/] or see [bold]config.default.toml[/] for details about configuration parameters."
+            "Run [bold]mcr --help[/] or see [bold]config.default.toml[/] for details about configuration parameters."
         )
         return
 

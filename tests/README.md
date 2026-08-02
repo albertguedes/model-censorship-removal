@@ -1,6 +1,6 @@
 # Test Suite Guide
 
-Whenever we change any code-logic related to `src/heretic/model.py` or `config.toml` *(e.g. `row_normalization`, `full_normalization_lora_rank`, `winsorization_quantile`, etc)* which can affect a model's reproduciblity; Use these tests which are designed to verify that those changes does not affect reproducibility, unless they are meant to (like when we'll integrate ARA branch in future).
+Whenever we change any code-logic related to `src/mcr/model.py` or `config.toml` *(e.g. `row_normalization`, `full_normalization_lora_rank`, `winsorization_quantile`, etc)* which can affect a model's reproduciblity; Use these tests which are designed to verify that those changes does not affect reproducibility, unless they are meant to (like when we'll integrate ARA branch in future).
 
 ## How to test
 

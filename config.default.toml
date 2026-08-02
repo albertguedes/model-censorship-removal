@@ -1,5 +1,5 @@
 # Rename this file to config.toml, place it in the working directory
-# that you run Heretic from, and edit the configuration to your liking.
+# that you run MCR from, and edit the configuration to your liking.
 
 # List of PyTorch dtypes to try when loading model tensors.
 # If loading with a dtype fails, the next dtype in the list will be tried.
@@ -91,8 +91,8 @@ residual_plot_style = "dark_background"
 # { plugin = <plugin>, optimization = <optimization>, instance_name = <optional> }
 # where <optimization> is one of "minimize", "maximize", "none" (do not optimize)
 scorers = [
-    { plugin = "heretic.scorers.keyword_rate.KeywordRate", optimization = "minimize"},
-    { plugin = "heretic.scorers.kl_divergence.KLDivergence", optimization = "minimize"},
+    { plugin = "mcr.scorers.keyword_rate.KeywordRate", optimization = "minimize"},
+    { plugin = "mcr.scorers.kl_divergence.KLDivergence", optimization = "minimize"},
 ]
 
 # Whether to adjust the residual directions so that only the component that is
@@ -209,8 +209,8 @@ column = "text"
 #
 # Example:
 # scorers = [
-#   { plugin = "heretic.scorers.keyword_rate.KeywordRate", optimization = 'minimize', instance_name = "small" },
-#   { plugin = "heretic.scorers.keyword_rate.KeywordRate", optimization = 'minimize', instance_name = "tiny" },
+#   { plugin = "mcr.scorers.keyword_rate.KeywordRate", optimization = 'minimize', instance_name = "small" },
+#   { plugin = "mcr.scorers.keyword_rate.KeywordRate", optimization = 'minimize', instance_name = "tiny" },
 # ]
 #
 # Shared defaults for all instances live under `[scorer.KeywordRate]` and can be overridden per

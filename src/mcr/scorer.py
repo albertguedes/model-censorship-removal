@@ -6,9 +6,9 @@ from dataclasses import dataclass
 
 from pydantic import BaseModel
 
-from heretic.plugin import Context, Plugin
+from mcr.plugin import Context, Plugin
 
-from .config import Settings as HereticSettings
+from .config import Settings as MCRSettings
 
 
 @dataclass
@@ -45,10 +45,10 @@ class Scorer(Plugin, ABC):
 
     def __init__(
         self,
-        heretic_settings: HereticSettings,
+        mcr_settings: MCRSettings,
         settings: BaseModel | None = None,
     ):
-        super().__init__(heretic_settings=heretic_settings, settings=settings)
+        super().__init__(mcr_settings=mcr_settings, settings=settings)
 
     @abstractmethod
     def get_score(self, ctx: Context) -> Score:

@@ -44,7 +44,7 @@ for test_directory in script_directory.iterdir():
                     project_directory,
                     "--directory",
                     test_directory,
-                    "heretic",
+                    "mcr",
                 ],
                 check=True,
             )
