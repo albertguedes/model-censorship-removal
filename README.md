@@ -149,9 +149,13 @@ Place the included Optuna study journal in `checkpoints/` to export other Pareto
 
 ---
 
-## Citation
+## About
 
-This project is a fork of [Heretic](https://github.com/p-e-w/heretic) by Philipp Emanuel Weidmann. If you use MCR or the original Heretic in research, cite accordingly:
+MCR is a fork of [Heretic](https://github.com/p-e-w/heretic) by Philipp Emanuel Weidmann, restructured for professional and enterprise use. The original Heretic project remains available for the community.
+
+---
+
+## Citation
 
 ```bibtex
 @misc{heretic,
