@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- Missing `[project.scripts]` entry point in pyproject.toml - `mcr` command now properly installed via `uv sync`
+- Added `[tool.uv]`, `[build-system]`, and `[tool.hatch.build.targets.wheel]` configuration for proper package installation
+
 ## [1.4.0] - 2025-08-02
 
 ### Added

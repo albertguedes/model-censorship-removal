@@ -62,6 +62,19 @@ dev = [
     "ty>=0.0.5",
 ]
 
+[project.scripts]
+mcr = "mcr.main:run"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcr"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project.urls]
 Homepage = "https://github.com/albertguedes/model-censorship-removal"
 Repository = "https://github.com/albertguedes/model-censorship-removal.git"
