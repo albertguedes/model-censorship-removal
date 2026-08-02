@@ -178,7 +178,7 @@ MCR builds on the directional ablation framework introduced by Arditi et al. (20
 
 ## License
 
-Copyright 2025-2026 Albert Mendes + Philipp Emanuel Weidmann
+Copyright 2025-2026 Albert R. Carnier Guedes + Philipp Emanuel Weidmann
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

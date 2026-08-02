@@ -17,7 +17,7 @@ All notable changes to this project are documented in this file.
 - **README.md rewritten**: Professional, technical documentation targeting enterprise and research audiences
 - Updated all Python imports and plugin paths across the codebase
 - Updated configuration files and test configs to reflect new module paths
-- Added Albert Mendes as project author alongside Philipp Emanuel Weidmann
+- Added Albert R. Carnier Guedes as project author alongside Philipp Emanuel Weidmann
 
 ### Removed
 - pip/uv distribution support (git clone only)

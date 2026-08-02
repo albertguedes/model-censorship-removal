@@ -5,7 +5,7 @@ description = "Automatic neutralization of safety alignment constraints in trans
 readme = "README.md"
 license = "AGPL-3.0-or-later"
 authors = [
-    { name = "Albert Mendes", email = "albertguedes@users.noreply.github.com" },
+    { name = "Albert R. Carnier Guedes", email = "albertguedes@users.noreply.github.com" },
     { name = "Philipp Emanuel Weidmann", email = "pew@worldwidemann.com" },
 ]
 requires-python = ">=3.10"
